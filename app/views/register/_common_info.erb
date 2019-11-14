@@ -1,0 +1,20 @@
+<div class="container">
+  <%= form_tag(register_infoget_path, :class => 'col s12') do %>
+    <h4>추가정보입력(필수)</h4>
+    <% if @user.email.nil? or @user.email == '' %>
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="email">email</label>
+            <%= text_field_tag :email, nil, :class => 'validate', :id => 'email' %>
+          </div>
+        </div>
+    <% end %>
+        <div class="row">
+          <div class="input-field col s12">
+            <label for="username">username</label>
+            <%= text_field_tag :nickname, nil, :class => 'validate', :id => 'username' %>
+          </div>
+        </div>
+        <%= submit_tag "가입", :class => 'btn waves-effect waves-light' %>
+  <% end %>
+</div>

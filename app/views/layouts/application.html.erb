@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>내기에 캔디</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108741601-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-108741601-1');
+  </script>
+
+</head>
+<body>
+  <!-- Dropdown Structure -->
+  <ul id="dropdown1" class="dropdown-content">
+    <% if user_signed_in? %>
+    <li><%= link_to "Roles : " + user_roles(current_user), '#' %></li>
+    <li><%= link_to('마이페이지', edit_user_registration_path)  %></li>
+    <li><%= link_to('로그아웃', destroy_user_session_path, method: :delete, data: { confirm: "로그아웃하시겠습니까?" }) %></li>
+    <% end %>
+  </ul>
+  <nav>
+    <div class="nav-wrapper" style="background-color:#eb5c62;">
+      <a href="/" class="brand-logo"><div style="width:195px;padding-left:15px;"><%=image_tag ("negi_logo.png"), :class=> "responsive-img", :style=> "padding-top: 15px;" %></div></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/home/new">각서 작성</a></li>
+        <li><a href="/home/list">각서 목록</a></li>
+        <li><a href="/home/board">공지사항</a></li>
+        <li><a href="/home/introduction">소개</a></li>
+        <% if user_signed_in? %>
+        <li><%= link_to('마이페이지', edit_user_registration_path)  %></li>
+        <li><%= link_to('로그아웃', destroy_user_session_path, method: :delete, data: { confirm: "로그아웃하시겠습니까?" }) %></li>
+        <% else %>
+        <li><%= link_to('로그인', new_user_session_path)  %></li>
+        <li><%= link_to('회원가입', new_user_registration_path)  %></li>
+        <% end %>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <% if user_signed_in? %>
+          <%= render 'home/side_nav' %>
+        <% end %>
+        <li><a href="/home/new">각서 작성</a></li>
+        <li><a href="/home/list">각서 목록</a></li>
+        <li><a href="/home/board">공지사항</a></li>
+        <li><a href="/home/introduction">소개</a></li>
+        <% if user_signed_in? %>
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><%=current_user.email%><i class="material-icons right">arrow_drop_down</i></a></li>
+        <% else %>
+        <li><%= link_to('로그인', new_user_session_path)  %></li>
+        <li><%= link_to('회원가입', new_user_registration_path)  %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+<%= yield %>
+
+
+<script type="text/javascript">
+(function(w, d, a){
+	w.__beusablerumclient__ = {
+		load : function(src){
+			var b = d.createElement("script");
+			b.src = src; b.async=true; b.type = "text/javascript";
+			d.getElementsByTagName("head")[0].appendChild(b);
+		}
+	};w.__beusablerumclient__.load(a);
+})(window, document, '//rum.beusable.net/script/b171125e132723u705/5f3dd9f072');
+</script>
+</body>
+
+<script>
+$( document ).ready(function() {
+  $(".button-collapse").sideNav();
+  $(".dropdown-button").dropdown();
+  
+});
+</script>
+</html>

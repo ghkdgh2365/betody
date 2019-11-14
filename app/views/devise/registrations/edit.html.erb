@@ -1,0 +1,79 @@
+<div class="container">  
+  <h3>마이페이지</h3>
+<!--<%= resource_name.to_s.humanize %>-->
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a class="active"href="#test1">회원정보수정</a></li>
+        <!--<li class="tab col s6"><a href="#test2">무통장입금</a></li>-->
+        <li class="tab col s6"><a href="#test3">회원탈퇴</a></li>
+      </ul>
+    </div>
+    <div id="test1" class="col s12">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
+      
+        <!--<div class="field">-->
+        <!--  <%= f.label :email %><br />-->
+        <!--  <%= f.email_field :email, autofocus: true %>-->
+        <!--</div>-->
+      
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+      
+        <div class="input-field">
+          <%= f.password_field :password, autocomplete: "off", :style=> 'margin-bottom:0px;' %>
+          <%= f.label :password, "새로운 비밀번호(8자 이상)" %>
+          <!--<% if @minimum_password_length %>-->
+          <!--  <br />-->
+          <!--  <em><%= @minimum_password_length %> characters minimum</em>-->
+          <% end %>
+        </div>
+      
+        <div class="input-field">
+          <%= f.password_field :password_confirmation, autocomplete: "off", :style=> 'margin-bottom:0px;' %>
+          <%= f.label :password_confirmation, "비밀번호 확인" %>
+        </div>
+      
+        <div class="input-field">
+          <%= f.password_field :current_password, autocomplete: "off", :style=> 'margin-bottom:5px;' %>
+          <%= f.label :current_password, "현재 비밀번호" %>
+        </div>
+      
+        <div class="actions">
+          <%= f.submit "회원정보수정하기", :class=> "waves-effect waves-light btn", :style=> "width:100%; margin-bottom:5px;" %>
+        </div>
+      <% end %>
+    </div>
+    <!--<div id="test2" class="col s12">-->
+    <!--  <h5>무통장입금 내역</h5>-->
+    <!--  <div class="row">-->
+        
+    <!--  </div>-->
+    <!--</div>-->
+    <div id="test3" class="col s12">
+      <h5>회원탈퇴</h5>
+      <p>회원탈퇴를 원하시나요? <%= button_to "회원탈퇴하기", registration_path(resource_name), data: { confirm: "탈퇴 시 모든 정보는 삭제되며, 복구가 불가능합니다." }, method: :delete, :class=> "waves-effect waves-light btn" , :style=> "width:100%; margin-bottom:5px;" %></p>
+    </div>
+  </div>
+  <%= link_to "뒤로가기", :back, :class=> "waves-effect waves-light btn", :style=> "width:100%; margin-bottom:5px;"  %>
+</div>
+<script>
+  $(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
+</script>
+<style>
+      @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+      .fixed-action-btn{
+        position: fixed;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 997;
+      }
+      h3{
+        text-align:center;
+        font-family: 'Hanna', fantasy;
+      }
+</style>

@@ -1,0 +1,32 @@
+<div class="container">
+  <h5 style="font-weight:bold;margin-bottom:40px;padding-top:20px;">로그인</h5>
+  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="input-field">
+      <%= f.email_field :email, autofocus: true, :style=> 'margin-bottom:10px;' %>
+      <%= f.label :email, "이메일주소" %>
+    </div>
+  
+    <div class="input-field">
+      <%= f.password_field :password, autocomplete: "off", :style=> 'margin-bottom:10px;' %>
+      <%= f.label :password, "비밀번호" %>
+    </div>
+  
+    <% if devise_mapping.rememberable? -%>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me, "로그인 저장", :style=> 'margin-bottom:30px;' %>
+    <% end -%>
+  
+    <div class="actions">
+      <%= f.submit "로그인", :class=> 'waves-effect waves-light btn', :style=> 'width:100%; margin-bottom:10px;background-color:#eb5c62;' %>
+    </div>
+  <% end %>
+  
+  <%= render "devise/shared/links" %>
+</div>
+<style>
+      @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+      h5{
+        font-family: 'Hanna', fantasy;
+      }
+</style>

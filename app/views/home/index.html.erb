@@ -1,0 +1,59 @@
+<!--<div class="carousel carousel-slider center" data-indicators="true">-->
+<!--  <div class="carousel-item red white-text" href="#one!">-->
+<!--    <%= image_tag ("main_edit.png"), :class=> "responsive-img"%>-->
+<!--  </div>-->
+<!--  <div class="carousel-fixed-item center">-->
+<!--    <a class="btn waves-effect white grey-text darken-text-2">button</a>-->
+<!--  </div>-->
+<!--</div>-->
+<div class="container">
+    <div class="fixed-action-btn" style="bottom: 45px;right: 24px;">
+      <a class="btn-floating btn-large pulse" href="/home/new" style="background-color:#eb5c62;"><i class="material-icons">mode_edit</i></a>
+    </div>
+</div>
+<div class="center">
+  <a href="/home/new"><%= image_tag (image_path("negi_main.png")), :class=> "responsive-img"%></a>
+  <%= image_tag (image_path("main_02.png")), :class=> "responsive-img"%>
+  <%= image_tag (image_path("main_final2.png")), :class=> "responsive-img"%>
+  <div class="footer grey lighten-2">
+    <p style="margin-top:0px;margin-bottom:0px;font-size:18px;">&copy;2017 내기에 캔디 All rights reserved.
+      <a href="" style="color:grey;margin-right:10px;margin-left:10px;"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+      <a href="" style="color:grey;"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+    </p>
+  </div>  
+</div>
+
+<style>
+      .fixed-action-btn{
+        position: fixed;
+        padding-top: 15px;
+        margin-bottom: 0;
+        
+        z-index: 997;
+      }
+      .center {
+        max-width: 100%; /* 이미지의 최대사이즈 */
+        width /***/: auto; /* IE8 */
+        height: 100vh;
+      }
+      .footer {
+          width: 100%;
+          background-color: red;
+          color: grey;
+          text-align: center;
+      }
+</style>
+<script>
+$( document ).ready(function() {
+  addToHomescreen();
+  $(".button-collapse").sideNav();
+  $(".dropdown-button").dropdown();
+  var originUrl = window.location.origin
+  var URL = location.href;
+  var realUrl = originUrl + "/#"
+  var realUrll = originUrl + "/home/index/#"
+  if (URL == realUrl || URL == realUrll){
+    location.href = originUrl
+  }
+});
+</script>

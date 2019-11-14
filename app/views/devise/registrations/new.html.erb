@@ -1,0 +1,40 @@
+
+<div class="container">
+  <h5 style="font-weight:bold;padding-top:20px;">회원가입</h5>
+  <p style="font-weight:bold;margin-top:5px;margin-bottom:40px;">10초만에 회원가입하기</p>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="input-field">
+      <%= f.email_field :email, autofocus: true, :class=> 'validate', :id=> 'user_email', :style=> 'margin-bottom:0px;' %>
+      <%= f.label :email, "이메일" %>
+    </div>
+    <div class="input-field">
+      <%= f.text_field :username, :class=> 'validate', :id=> 'user_username', :style=> 'margin-bottom:0px;' %>
+      <%= f.label :username, "이름" %>
+    </div>
+    
+    <div class="input-field">
+      <!--<% if @minimum_password_length %>-->
+      <!--<% end %>-->
+      <%= f.password_field :password, autocomplete: "off", :class=> 'validate', :id=> 'user_password', :style=> 'margin-bottom:0px;' %>
+      <%= f.label :password, "비밀번호(8글자이상)"%>
+    </div>
+  
+    <div class="input-field">
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class=> 'validate', :id=> 'user_password_confirmation', :style=> 'margin-bottom:0px;' %>
+      <%= f.label :password_confirmation, "비밀번호확인" %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "회원가입하기", :class=> 'waves-effect waves-light btn', :style=> "width:100%;margin-bottom:5px;margin-top:10px;background-color:#eb5c62;"  %>
+    </div>
+  <% end %>
+  
+  <%= render "devise/shared/links" %>
+</div>
+<style>
+      @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+      h5{
+        font-family: 'Hanna', fantasy;
+      }
+</style>

@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 m12">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">각서</span>
+          <%= @post.created_at %>
+          <%= @post.my_name %>은(는) 
+          <% unless @post.need_day == nil %>
+            <%= @post.start_day %> 부터
+            <%= @post.end_day %> 까지
+          <% end %>
+          <%= @post.title %>을(를) 할 것입니다.
+          <% unless @post.menu == nil %>
+            만약 지켜지지 못할 시에는
+            <%= @post.menu.menu_name %> 을(를)
+            <%= @post.receiver_name %> 에게 줄 것입니다.
+          <% end %>
+          <% unless @post.content == nil %>
+            (<%= @post.content %>)
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <form class="col s12" action="/home/create_comment/<%=@post.id%>" method="post">
+      <div class="row">
+        <div class="input-field col s10 m11">
+          <i class="material-icons prefix">mode_edit</i>
+          <% if user_signed_in? %>
+            <textarea id="icon_prefix2" class="materialize-textarea" name="content" style="margin-bottom: 0px;"></textarea>
+            <label for="icon_prefix2">코멘트 달기</label>
+          <% else %>
+            <textarea disabled id="icon_prefix2" class="materialize-textarea" name="content" style="margin-bottom: 0px;"></textarea>
+            <label for="icon_prefix2">로그인이 필요합니다</label>
+          <% end %>
+        </div>
+        <div class="col s2 m1" id="btn_div">
+          <button class="btn waves-effect waves-light" id="submit_comment" type="submit" name="action"><i class="material-icons right" id="btn_icon">send</i></button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <h5>코멘트</h5>
+    <div class="row">
+      <% @post.comments.each do |c| %>
+        <ul class="collection">
+          <li class="collection-item">
+            <div>
+              <%= c.user.email %> | <%= c.content %>
+              <a href="/home/destroy_comment/<%=c.id%>" class="secondary-content"><i class="material-icons">delete</i></a>
+            </div>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+</div>
+
+<style>
+  #submit_comment {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    height: 55px;
+    width: 46px;
+    margin-top: 25px;
+  }
+  #btn_div {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  #btn_icon {
+    margin-right: 13px;
+  }
+  .row {
+    margin-bottom:0px;
+  }
+</style>
+
+<script>
+$( document ).ready(function() {
+
+});
+</script>
